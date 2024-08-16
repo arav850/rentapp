@@ -1,0 +1,26 @@
+.homecaurosel {
+  height: 300px;
+  width: 100%;
+  padding: 0 2%;
+  margin-bottom: 20px;
+
+  //  background-color: red;
+}
+
+.carousel-item {
+  height: 300px;
+}
+
+
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+}

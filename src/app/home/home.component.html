@@ -1,0 +1,99 @@
+<div>
+    <!-- <div class="homecaurosel row">
+        <div id="carouselExampleAutoplaying" class="carousel slide col-md-9" data-bs-ride="carousel">
+            <div class="carousel-inner ">
+                <div class="carousel-item active">
+                    <img src="https://media.istockphoto.com/id/1440568749/photo/modern-apartment-buildings-in-the-evening.jpg?s=1024x1024&w=is&k=20&c=9psxRv7eswszexX2JBJGGUhRNncAyzp9fmuR89oHlxM="
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://media.istockphoto.com/id/1440568749/photo/modern-apartment-buildings-in-the-evening.jpg?s=1024x1024&w=is&k=20&c=9psxRv7eswszexX2JBJGGUhRNncAyzp9fmuR89oHlxM="
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://media.istockphoto.com/id/1440568749/photo/modern-apartment-buildings-in-the-evening.jpg?s=1024x1024&w=is&k=20&c=9psxRv7eswszexX2JBJGGUhRNncAyzp9fmuR89oHlxM="
+                        class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="col-md-2">
+            <app-menucard></app-menucard>
+        </div>
+
+
+    </div> -->
+    <div class="homecaurosel row">
+        <div *ngIf="posts.length > 0" id="carouselExampleAutoplaying" class="carousel slide col-md-12"
+            data-bs-ride="carousel">
+            <div class="carousel-inner" style="align-items: center;">
+                <!-- Loop through posts to display their images in the carousel -->
+                <div *ngFor="let post of posts; let j = index">
+                    <!-- Loop through each post's images -->
+                    <div *ngFor="let image of post.images; let i = index">
+                        <div class="carousel-item" [class.active]="j === 0 && i === 0">
+                            <!-- Wrap image in an anchor tag with a link to view the post -->
+                            <a style="height:450px ;" [routerLink]="['/Viewpost', post.id]">
+                                <img [src]="image.url" class="d-block w-100" [alt]="'Image ' + (i + 1)">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="menu" style="margin-top: 50px;">
+        <div class="row row-cols-1 row-cols-md-3 g-4 sticky" *ngIf="filteredPosts.length > 0">
+            <div class="col" *ngFor="let post of filteredPosts">
+                <div class="card" style="width: 20rem;">
+                    <div class="preview-pic tab-content">
+                        <!-- Image preview can be added here if needed -->
+                    </div>
+                    <ul class="preview-thumbnail nav nav-tabs">
+                        <li *ngFor="let image of post?.images; let i = index" [class.active]="i === 0">
+                            <a [attr.data-target]="'#pic-' + (i + 1)" data-toggle="tab">
+                                <img style="height: 250px;width:317px" [src]="image.url" alt="Image {{ i + 1 }}">
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="card-body" style="margin-bottom:30px ;">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.description }}</p>
+                        <div style="display: flex; justify-content: space-between;">
+                            <div>
+                                <a (click)="viewDetails(post.id)" class="btn btn-primary">View Details</a>
+                            </div>
+                            <div>
+                                <a (click)="addToFavorites(post.id)" class="btn"
+                                    [class.btn-primary]="!isFavorite(post.id)"
+                                    [class.btn-success]="isFavorite(post.id)">
+                                    {{ isFavorite(post.id) ? 'Marked' : 'Mark as Favorite' }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
