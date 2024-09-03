@@ -37,9 +37,10 @@ export class UserService {
       })
     );
   }
-
   addToFavourites(postId: string): Observable<any> {
     return this.getUserById(this.userId).pipe(
+      //switching to new observable(Chaining Asynchronous Operations) i.e  after the first one complete
+      //prevent memory leaks from prev obsrvble
       switchMap((user) => {
         if (user) {
           user.favourites.push(postId);
@@ -66,7 +67,6 @@ export class UserService {
       switchMap((user) => {
         if (user) {
           const url = `${this.apiUrl}/${user.id}`;
-
           return this.http.get(url).pipe(
             catchError((error) => {
               console.error('Error adding to favorites', error);

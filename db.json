@@ -12,6 +12,7 @@
         "381",
         "794",
         "557",
+        "557",
         "557"
       ]
     },
@@ -32,13 +33,27 @@
       "favourites": []
     },
     {
-      "id": "",
+      "id": "122",
       "userId": "373",
       "fullName": "Buyer2",
       "email": "buyer2@gmail.com",
       "password": "Buyer@123",
       "role": "Buyer",
-      "favourites": []
+      "favourites": [
+        "557",
+        "557"
+      ]
+    },
+    {
+      "id": "123",
+      "userId": "632",
+      "fullName": "buyer3",
+      "email": "buyer3@gmail.com",
+      "password": "Buyer@123",
+      "role": "Buyer",
+      "favourites": [
+        "557"
+      ]
     }
   ],
   "userList": [
